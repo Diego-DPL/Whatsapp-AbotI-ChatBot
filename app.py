@@ -11,6 +11,7 @@ def bienvenido():
 @app.route('/webhook', methods=['GET'])
 def verificar_token():
     try:
+        print("Token")
         token = request.args.get('hub.verify_token')
         challenge = request.args.get('hub.challenge')
 
@@ -24,6 +25,7 @@ def verificar_token():
 @app.route('/webhook', methods=['POST'])
 def recibir_mensajes():
     try:
+        print("entrada en el webhook ")
         body = request.get_json()
         entry = body['entry'][0]
         changes = entry['changes'][0]
@@ -34,6 +36,8 @@ def recibir_mensajes():
         contacts = value['contacts'][0]
         name = contacts['profile']['name']
         text = services.obtener_Mensaje_whatsapp(message)
+
+        print("entrada en el webhook ", message)
 
         services.administrar_chatbot(text, number,messageId,name)
         return 'enviado'

@@ -21,6 +21,9 @@ def obtener_Mensaje_whatsapp(message):
     else:
         text = 'mensaje no procesado'
     
+    print("====================================")
+    print("obtener_Mensaje_whatsapp", text)
+    print("====================================")
     
     return text
 
